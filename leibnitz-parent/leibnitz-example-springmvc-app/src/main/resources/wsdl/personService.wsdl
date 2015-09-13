@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://personservice.joshbailey.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="PersonServiceImplService" targetNamespace="http://personservice.joshbailey.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://personservice.joshbailey.com/" elementFormDefault="unqualified" targetNamespace="http://personservice.joshbailey.com/" version="1.0">
+<xs:element name="greetPerson" type="tns:greetPerson"/>
+<xs:element name="greetPersonResponse" type="tns:greetPersonResponse"/>
+<xs:complexType name="greetPerson">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="greetPersonResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="greetPerson">
+    <wsdl:part element="tns:greetPerson" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="greetPersonResponse">
+    <wsdl:part element="tns:greetPersonResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PersonService">
+    <wsdl:operation name="greetPerson">
+      <wsdl:input message="tns:greetPerson" name="greetPerson">
+    </wsdl:input>
+      <wsdl:output message="tns:greetPersonResponse" name="greetPersonResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PersonServiceImplServiceSoapBinding" type="tns:PersonService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="greetPerson">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="greetPerson">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="greetPersonResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PersonServiceImplService">
+    <wsdl:port binding="tns:PersonServiceImplServiceSoapBinding" name="PersonServiceImplPort">
+      <soap:address location="http://localhost:8080/CXFExampleService/personService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

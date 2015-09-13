@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:jaxws="http://cxf.apache.org/jaxws" 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://cxf.apache.org/jaxws 				http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<bean id="abstractLoggingInterceptor" abstract="true">
+		<property name="prettyLogging" value="true" />
+	</bean>
+	<bean id="loggingInInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor" parent="abstractLoggingInterceptor" />
+	<bean id="loggingOutInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor" parent="abstractLoggingInterceptor" />
+
+<!-- 	<jaxws:client id="personServiceClient" serviceClass="com.joshbailey.personservice.PersonService" address="http://localhost:8080/CXFExampleService/personService"> -->
+<!-- 		<jaxws:inInterceptors> -->
+<!-- 			<ref bean="loggingInInterceptor" /> -->
+<!-- 		</jaxws:inInterceptors> -->
+<!-- 		<jaxws:outInterceptors> -->
+<!-- 			<ref bean="loggingOutInterceptor" /> -->
+<!-- 		</jaxws:outInterceptors> -->
+<!-- 		<jaxws:outFaultInterceptors> -->
+<!-- 			<ref bean="loggingOutInterceptor" /> -->
+<!-- 		</jaxws:outFaultInterceptors> -->
+<!-- 		<jaxws:inFaultInterceptors> -->
+<!-- 			<ref bean="loggingInInterceptor" /> -->
+<!-- 		</jaxws:inFaultInterceptors> -->
+<!-- 	</jaxws:client> -->
+	
+    <bean id="personServiceClient" class="com.joshbailey.personservice.PersonService" 
+    	  factory-bean="clientFactory" 
+    	  factory-method="create"/>
+    
+    <bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.joshbailey.personservice.PersonService"/>
+        <property name="address" value="http://localhost:8080/CXFExampleService/personService"/>
+        <property name="inInterceptors" ref="loggingInInterceptor"/>
+        <property name="outInterceptors" ref="loggingOutInterceptor"/>
+        <property name="outFaultInterceptors" ref="loggingOutInterceptor"/>
+        <property name="inFaultInterceptors" ref="loggingInInterceptor"/>
+    </bean>
+	
+</beans>

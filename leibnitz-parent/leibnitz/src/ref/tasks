@@ -1,0 +1,5 @@
+* Seperate the example code from the actual framework that's being built
+* Ability to define the .war file under test in the JUnit itself
+* Ability to retrieve the .war file as a maven dependency / specify the .war file as a maven dependency
+* Ability to run a test that starts multiple servers at the same time, and the servers talk to each other
+* Make it so that a warning is issued when .war file is not found

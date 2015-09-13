@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:property-placeholder location="classpath:leibnitz.properties" />
+
+	<bean id="abstractLoggingInterceptor" abstract="true">
+		<property name="prettyLogging" value="true" />
+	</bean>
+	<bean id="loggingInInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"
+		parent="abstractLoggingInterceptor" />
+	<bean id="loggingOutInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor"
+		parent="abstractLoggingInterceptor" />
+
+	<jaxws:client id="personServiceClient"
+		serviceClass="com.joshbailey.personservice.PersonService" address="${endpoint}">
+		<jaxws:inInterceptors>
+			<ref bean="loggingInInterceptor" />
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="loggingOutInterceptor" />
+		</jaxws:outInterceptors>
+		<jaxws:outFaultInterceptors>
+			<ref bean="loggingOutInterceptor" />
+		</jaxws:outFaultInterceptors>
+		<jaxws:inFaultInterceptors>
+			<ref bean="loggingInInterceptor" />
+		</jaxws:inFaultInterceptors>
+	</jaxws:client>
+</beans>

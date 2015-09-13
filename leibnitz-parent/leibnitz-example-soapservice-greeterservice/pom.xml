@@ -1,0 +1,258 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.joshbailey.leibnitz.example.soapservice</groupId>
+	<artifactId>greeter-service</artifactId>
+	<packaging>war</packaging>
+	
+	<parent>
+        <groupId>com.joshbailey.leibnitz</groupId>
+        <artifactId>leibnitz-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+	<!-- Dependency properties -->
+	<properties>
+		<cxf.version>2.7.3</cxf.version>
+		<spring-version>3.2.0.RELEASE</spring-version>
+		<commons-logging-version>1.1.1</commons-logging-version>
+		<jacoco.out.path>${session.executionRootDirectory}/target</jacoco.out.path>
+		<jacoco.out.file>jacoco-coverage</jacoco.out.file>
+	</properties>
+
+	<build>
+		<finalName>CXFExampleService</finalName>
+		<!-- Feel free to change maven-compiler-plugin configuration -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-java2ws-plugin</artifactId>
+				<version>${cxf.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-rt-frontend-jaxws</artifactId>
+						<version>${cxf.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-rt-frontend-simple</artifactId>
+						<version>${cxf.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>process-classes</id>
+						<phase>process-classes</phase>
+						<configuration>
+							<className>com.joshbailey.personservice.IPersonService</className>
+							<genWsdl>true</genWsdl>
+							<verbose>true</verbose>
+						</configuration>
+						<goals>
+							<goal>java2ws</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>${cxf.version}</version>
+				<executions>
+					<execution>
+						<id>generate-test-sources</id>
+						<phase>generate-test-sources</phase>
+						<configuration>
+							<sourceRoot>${project.build.directory}/test/generated/cxf</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>${basedir}/src/test/resources/wsdl/personService.wsdl</wsdl>
+								</wsdlOption>
+							</wsdlOptions>
+							<!-- <additionalJvmArgs>-frontend jaxws21</additionalJvmArgs> -->
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>add-test-source</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/test/generated/cxf</source>
+								<source>src/integration-test/java</source>
+							</sources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>add-test-resource</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>add-test-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>src/integration-test/resources</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.6.3.201306030806</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<destFile>${jacoco.out.path}/${jacoco.out.file}</destFile>
+							<propertyName>jacoco.agent.arg</propertyName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>jacoco-site</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>${jacoco.out.path}/${jacoco.out.file}</dataFile>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.16</version>
+				<executions>
+					<execution>
+						<id>standard-integration-tests</id>
+						<goals>
+							<goal>integration-test</goal>
+							<!-- <goal>verify</goal> -->
+						</goals>
+						<configuration>
+							<systemPropertyVariables>
+								<jacoco.agent.arg>${jacoco.agent.arg}</jacoco.agent.arg>
+							</systemPropertyVariables>
+							<!-- <argLine>${jacoco.agent.arg}</argLine> -->
+							<!-- <includes> -->
+							<!-- <include>**/PersonService_IT.java</include> -->
+							<!-- </includes> -->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.cxf
+										</groupId>
+										<artifactId>
+											cxf-codegen-plugin
+										</artifactId>
+										<versionRange>
+											[2.2.6,)
+										</versionRange>
+										<goals>
+											<goal>wsdl2java</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute></execute>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<!-- Dependency definitions -->
+	<dependencies>
+
+		<!-- leibnitz -->
+		<dependency>
+			<groupId>com.joshbailey.leibnitz</groupId>
+			<artifactId>leibnitz</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Apache CXF dependencies -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<!-- Spring Dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Logging -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons-logging-version}</version>
+		</dependency>
+	</dependencies>
+</project>

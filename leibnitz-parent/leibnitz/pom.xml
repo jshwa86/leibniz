@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>leibnitz</artifactId>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>com.joshbailey.leibnitz</groupId>
+		<artifactId>leibnitz-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<!-- Dependency properties -->
+	<properties>
+		<spring-version>3.2.0.RELEASE</spring-version>
+		<commons-logging-version>1.1.1</commons-logging-version>
+		<jacoco.out.path>${session.executionRootDirectory}/target</jacoco.out.path>
+		<jacoco.out.file>jacoco-coverage</jacoco.out.file>
+		<cargo.version>1.4.15</cargo.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>add-test-resource</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>add-test-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>src/integration-test/resources</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- Dependency definitions -->
+	<dependencies>
+
+		<!-- Cargo -->
+		<dependency>
+			<groupId>org.codehaus.cargo</groupId>
+			<artifactId>cargo-core-api-util</artifactId>
+			<version>${cargo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.cargo</groupId>
+			<artifactId>cargo-core-api-module</artifactId>
+			<version>${cargo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.cargo</groupId>
+			<artifactId>cargo-core-api-container</artifactId>
+			<version>${cargo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.cargo</groupId>
+			<artifactId>cargo-core-api-generic</artifactId>
+			<version>${cargo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.cargo</groupId>
+			<artifactId>cargo-core-container-tomcat</artifactId>
+			<version>${cargo.version}</version>
+		</dependency>
+
+		<!-- Spring Dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Logging -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons-logging-version}</version>
+		</dependency>
+
+		<dependency><!-- See: https://github.com/ronmamo/reflections (Needed for 
+				classpath scanning) -->
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.9.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+		</dependency>
+	</dependencies>
+</project>
