@@ -1,4 +1,4 @@
-package com.joshbailey.leibniz.wars;
+package com.joshbailey.leibnitz.wars;
 
 import org.codehaus.cargo.container.deployable.WAR;
 

@@ -1,4 +1,4 @@
-package com.joshbailey.leibniz.servers;
+package com.joshbailey.leibnitz.servers;
 
 import java.util.Collection;
 
@@ -8,7 +8,7 @@ import org.codehaus.cargo.container.tomcat.Tomcat7xInstalledLocalContainer;
 import org.codehaus.cargo.container.tomcat.Tomcat7xStandaloneLocalConfiguration;
 import org.codehaus.cargo.util.log.SimpleLogger;
 
-import com.joshbailey.leibniz.wars.LeibnitzWar;
+import com.joshbailey.leibnitz.wars.LeibnitzWar;
 
 public abstract class LeibnitzServer {
 

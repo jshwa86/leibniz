@@ -1,7 +1,7 @@
 package com.joshbailey.liebniz.wars;
 
-import com.joshbailey.leibniz.wars.LeibnitzWar;
-import com.joshbailey.leibniz.wars.LeibnitzWar.WarFilePathResolutionStrategy;
+import com.joshbailey.leibnitz.wars.LeibnitzWar;
+import com.joshbailey.leibnitz.wars.LeibnitzWar.WarFilePathResolutionStrategy;
 
 public class SpringMvcUIWar extends LeibnitzWar{
 

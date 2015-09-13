@@ -1,4 +1,4 @@
-package com.joshbailey.leibniz.annotations;
+package com.joshbailey.leibnitz.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 import org.junit.runner.RunWith;
 
-import com.joshbailey.leibniz.testrunner.ServerDependentSuite;
+import com.joshbailey.leibnitz.testrunner.ServerDependentSuite;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

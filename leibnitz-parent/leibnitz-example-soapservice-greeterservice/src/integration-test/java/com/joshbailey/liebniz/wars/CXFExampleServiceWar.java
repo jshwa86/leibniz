@@ -1,6 +1,6 @@
 package com.joshbailey.liebniz.wars;
 
-import com.joshbailey.leibniz.wars.LeibnitzWar;
+import com.joshbailey.leibnitz.wars.LeibnitzWar;
 
 public class CXFExampleServiceWar extends LeibnitzWar{
 

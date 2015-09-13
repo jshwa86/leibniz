@@ -1,11 +1,11 @@
-package com.joshbailey.leibniz.testrunner;
+package com.joshbailey.leibnitz.testrunner;
 
 import java.util.List;
 
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 
-import com.joshbailey.leibniz.servers.LeibnitzServer;
+import com.joshbailey.leibnitz.servers.LeibnitzServer;
 
 public class ServerDependentTestRunner extends BlockJUnit4ClassRunner{
 

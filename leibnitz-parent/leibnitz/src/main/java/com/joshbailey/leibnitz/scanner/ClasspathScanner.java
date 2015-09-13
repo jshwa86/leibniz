@@ -1,4 +1,4 @@
-package com.joshbailey.leibniz.scanner;
+package com.joshbailey.leibnitz.scanner;
 
 public class ClasspathScanner {
 

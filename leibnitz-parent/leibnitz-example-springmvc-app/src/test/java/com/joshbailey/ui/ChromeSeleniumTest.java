@@ -15,7 +15,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver.Window;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.joshbailey.leibniz.tests.ServerDependentTest;
+import com.joshbailey.leibnitz.tests.ServerDependentTest;
 import com.joshbailey.springmvc.liebniz.servers.StandardServer;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;

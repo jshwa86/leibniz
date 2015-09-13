@@ -1,7 +1,7 @@
 package com.joshbailey.liebniz.main;
 
 import com.joshbailey.leibnitz.cargo.CargoOrchestrator;
-import com.joshbailey.leibniz.servers.LeibnitzServer;
+import com.joshbailey.leibnitz.servers.LeibnitzServer;
 import com.joshbailey.liebniz.servers.JoshServer;
 import com.joshbailey.liebniz.servers.StandardServer;
 

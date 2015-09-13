@@ -1,4 +1,4 @@
-package com.joshbailey.leibniz.testrunner;
+package com.joshbailey.leibnitz.testrunner;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -10,7 +10,7 @@ import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 
 import com.joshbailey.leibnitz.cargo.CargoOrchestrator;
-import com.joshbailey.leibniz.servers.LeibnitzServer;
+import com.joshbailey.leibnitz.servers.LeibnitzServer;
 
 public class ServerDependentSuite extends Suite{
 	

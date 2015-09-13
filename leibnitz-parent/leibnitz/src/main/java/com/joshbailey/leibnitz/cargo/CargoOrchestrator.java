@@ -13,8 +13,8 @@ import org.codehaus.cargo.container.tomcat.Tomcat7xInstalledLocalContainer;
 import org.codehaus.cargo.container.tomcat.TomcatPropertySet;
 import org.codehaus.cargo.util.log.SimpleLogger;
 
+import com.joshbailey.leibnitz.servers.LeibnitzServer;
 import com.joshbailey.leibnitz.workingdirectory.WorkingDirectoryHelper;
-import com.joshbailey.leibniz.servers.LeibnitzServer;
 
 public class CargoOrchestrator {
 

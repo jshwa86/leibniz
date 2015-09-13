@@ -1,4 +1,4 @@
-package com.joshbailey.leibniz.testrunner;
+package com.joshbailey.leibnitz.testrunner;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -20,9 +20,9 @@ import org.reflections.scanners.TypeAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 
-import com.joshbailey.leibniz.annotations.LiebnizTest;
-import com.joshbailey.leibniz.servers.LeibnitzServer;
-import com.joshbailey.leibniz.tests.ServerDependentTest;
+import com.joshbailey.leibnitz.annotations.LiebnizTest;
+import com.joshbailey.leibnitz.servers.LeibnitzServer;
+import com.joshbailey.leibnitz.tests.ServerDependentTest;
 
 public class LeibnizTestSuiteRunner extends Suite{
 

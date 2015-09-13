@@ -13,8 +13,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.joshbailey.leibniz.servers.LeibnitzServer;
-import com.joshbailey.leibniz.tests.ServerDependentTest;
+import com.joshbailey.leibnitz.servers.LeibnitzServer;
+import com.joshbailey.leibnitz.tests.ServerDependentTest;
 import com.joshbailey.liebniz.servers.StandardServer;
 
 

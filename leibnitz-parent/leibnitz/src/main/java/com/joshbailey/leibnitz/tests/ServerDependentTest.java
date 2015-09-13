@@ -1,9 +1,9 @@
-package com.joshbailey.leibniz.tests;
+package com.joshbailey.leibnitz.tests;
 
 import org.junit.runner.RunWith;
 
-import com.joshbailey.leibniz.annotations.LiebnizTest;
-import com.joshbailey.leibniz.testrunner.ServerDependentSuite;
+import com.joshbailey.leibnitz.annotations.LiebnizTest;
+import com.joshbailey.leibnitz.testrunner.ServerDependentSuite;
 
 @RunWith(ServerDependentSuite.class)
 @LiebnizTest

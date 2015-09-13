@@ -1,9 +1,9 @@
-package com.joshbailey.leibniz.testrunner;
+package com.joshbailey.leibnitz.testrunner;
 
 import org.junit.runner.Runner;
 import org.junit.runners.model.RunnerBuilder;
 
-import com.joshbailey.leibniz.servers.LeibnitzServer;
+import com.joshbailey.leibnitz.servers.LeibnitzServer;
 
 public class ServerDependentTestRunnerBuilder extends RunnerBuilder {
 

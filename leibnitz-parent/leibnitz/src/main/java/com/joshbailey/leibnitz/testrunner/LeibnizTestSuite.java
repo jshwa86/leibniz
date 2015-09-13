@@ -1,4 +1,4 @@
-package com.joshbailey.leibniz.testrunner;
+package com.joshbailey.leibnitz.testrunner;
 
 import org.junit.runner.RunWith;
 

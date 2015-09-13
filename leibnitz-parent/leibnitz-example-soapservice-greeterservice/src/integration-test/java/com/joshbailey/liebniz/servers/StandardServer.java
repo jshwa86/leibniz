@@ -6,8 +6,8 @@ import java.util.LinkedList;
 
 import org.codehaus.cargo.container.configuration.LocalConfiguration;
 
-import com.joshbailey.leibniz.servers.LeibnitzServer;
-import com.joshbailey.leibniz.wars.LeibnitzWar;
+import com.joshbailey.leibnitz.servers.LeibnitzServer;
+import com.joshbailey.leibnitz.wars.LeibnitzWar;
 import com.joshbailey.liebniz.wars.CXFExampleServiceWar;
 
 public class StandardServer extends LeibnitzServer{
